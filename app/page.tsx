@@ -98,6 +98,21 @@ export default function Home() {
   
     return null;
   }
+
+  function getTagCount(item: any) {
+    let count = 0;
+  
+    if ((item.protein || 0) >= 10) count++;
+  
+    if ((item.fiber || 0) >= 6) count++;
+  
+    if ((item.guidingStars || 0) > 0) count++;
+  
+    if (getGLP1Score(item) >= 60) count++;
+  
+    return count;
+  }
+  
   function addToCart(item: any) {
     setCartMessage(`${item.name} added to cart`);
 
@@ -209,12 +224,20 @@ setTimeout(() => {
             );
             
       })
-      .sort(
-        (a, b) =>
-          getGLP1Score(b) - getGLP1Score(a)
-      )
-  : [];
-
+      .sort((a, b) => {
+        const tagDiff =
+          getTagCount(b) - getTagCount(a);
+      
+        if (tagDiff !== 0) {
+          return tagDiff;
+        }
+      
+        return (
+          getGLP1Score(b) -
+          getGLP1Score(a)
+        );
+      })
+: [];
   return (
     <main
       style={{
@@ -685,6 +708,15 @@ setTimeout(() => {
 </div>
     
 
+<p
+  style={{
+    fontWeight: "bold",
+    color: "#666",
+    marginBottom: "16px",
+  }}
+>
+  Showing {filteredResults.length} products
+</p>
 
       {/* LOADING */}
 
