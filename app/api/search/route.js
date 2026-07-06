@@ -6,9 +6,11 @@ export async function GET(req) {
   const query =
     searchParams.get("q")?.toLowerCase().trim() || "";
 
-  if (!query) {
-    return Response.json([]);
-  }
+    if (!query) {
+      return Response.json(
+        products.slice(0, 5000)
+      );
+    }
 
   const filtered = products.filter((product) => {
     const text = `
@@ -25,3 +27,7 @@ export async function GET(req) {
     filtered.slice(0, 50)
   );
 }
+console.log(
+  "Total products:",
+  products.length
+);
