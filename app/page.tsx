@@ -261,7 +261,7 @@ const paginatedResults =
   return (
     <main
       style={{
-        background: "#f5f8f5",
+        background: "#f4f6f9",
         minHeight: "100vh",
         padding: "24px",
         fontFamily: "Arial, sans-serif",
@@ -399,10 +399,18 @@ const paginatedResults =
     left: 50%;
     transform: translateX(-50%);
 
-    background: #138a36;
-    color: white;
+    
+      background: #0054A6;
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+    }
 
-    padding: 12px 20px;
+    
+    adding: 16px 28px;
+min-width: 300px;
+text-align: center;
+
 
     border-radius: 12px;
 
@@ -420,7 +428,10 @@ const paginatedResults =
     top: 20px;
     right: 20px;
 
-    background: white;
+    
+    background: #f9fbff;
+    border: 1px solid #dce9ff;
+
 
     padding: 12px 16px;
 
@@ -434,7 +445,7 @@ const paginatedResults =
   }
 
   .cart-count {
-    background: #138a36;
+    background: #0054A6;
     color: white;
 
     border-radius: 50%;
@@ -456,7 +467,8 @@ const paginatedResults =
 
     width: 350px;
 
-    background: white;
+    background: #F7F8FA;
+    border: 1px solid #DDE4EE;
     color: #222;
 
     border-radius: 12px;
@@ -516,7 +528,7 @@ const paginatedResults =
 
       <div
         style={{
-          background: "white",
+          background: CARD_GRAY,
           borderRadius: "16px",
           padding: "24px",
           marginBottom: "24px",
@@ -538,19 +550,21 @@ const paginatedResults =
           />
 
           <img
-            src="/stop-shop-logo.png"
-            alt="Stop & Shop"
+            src="/food-lion-logo.png"
+            alt="Food Lion"
             style={{ height: "55px" }}
           />
         </div>
 
         <h1
-          style={{
-            color: "#138a36",
-            marginTop: "20px",
-            marginBottom: "6px",
-          }}
-        >
+  style={{
+    color: BRAND_BLUE,
+    marginTop: "20px",
+    marginBottom: "6px",
+    fontSize: "42px",
+    fontWeight: "700",
+  }}
+>
           Better Bites
         </h1>
 
@@ -561,20 +575,21 @@ const paginatedResults =
             marginBottom: "12px",
           }}
         >
-          Nourishment that meets your goals.
+          Nourishment that supports your goals.
         </p>
 
         <div
           style={{
             display: "inline-block",
-            background: "#e8f7ea",
-            color: "#138a36",
+            background: LIGHT_BLUE,
+            color: BRAND_BLUE,
+            border: "1px solid #BFD8FF",
             padding: "8px 12px",
             borderRadius: "8px",
             fontWeight: "bold",
           }}
         >
-          Stop & Shop Wellness Pilot
+          Food Lion Nutrition & Wellness Experience
         </div>
       </div>
 
@@ -601,7 +616,8 @@ const paginatedResults =
       flex: 1,
       padding: "14px",
       borderRadius: "12px",
-      border: "1px solid #ccc",
+      border: "1px solid #D1D9E6",
+      boxShadow: "0 1px 4px rgba(0,0,0,.05)",
       fontSize: "16px",
     }}
   />
@@ -613,7 +629,7 @@ const paginatedResults =
       }
     }}
     style={{
-      background: "#138a36",
+      background: BRAND_BLUE,
       color: "white",
       border: "none",
       padding: "14px 20px",
@@ -645,8 +661,8 @@ const paginatedResults =
       ...buttonStyle,
       backgroundColor:
         filter === "all"
-          ? "#138a36"
-          : "#cccccc",
+          ? BRAND_BLUE
+          : "#DDE4EE",
     }}
   >
     All Products
@@ -661,8 +677,8 @@ const paginatedResults =
       ...buttonStyle,
       backgroundColor:
         filter === "glp1"
-          ? "#138a36"
-          : "#cccccc",
+          ? BRAND_BLUE
+          : "#DDE4EE",
     }}
   >
     GLP-1 Friendly
@@ -677,8 +693,8 @@ const paginatedResults =
       ...buttonStyle,
       backgroundColor:
         proteinFilter
-          ? "#138a36"
-          : "#cccccc",
+          ? BRAND_BLUE
+          : "#DDE4EE",
     }}
   >
     💪 High Protein
@@ -693,8 +709,8 @@ const paginatedResults =
       ...buttonStyle,
       backgroundColor:
         fiberFilter
-          ? "#138a36"
-          : "#cccccc",
+          ? BRAND_BLUE
+          : "#DDE4EE",
     }}
   >
     🌾 High Fiber
@@ -711,8 +727,8 @@ const paginatedResults =
     ...buttonStyle,
     backgroundColor:
       guidingStarsFilter
-        ? "#138a36"
-        : "#cccccc",
+        ? BRAND_BLUE
+        : "#DDE4EE",
   }}
 >
   ⭐ Guiding Stars
@@ -729,8 +745,8 @@ const paginatedResults =
       ...buttonStyle,
       backgroundColor:
         beverageFilter
-          ? "#138a36"
-          : "#cccccc",
+          ? BRAND_BLUE
+          : "#DDE4EE",
     }}
   >
     🥤 Beverages
@@ -813,7 +829,7 @@ const paginatedResults =
           <div
             key={item.id}
             style={{
-              background: "white",
+              background: CARD_GRAY,
               borderRadius: "16px",
               padding: "16px",
               marginBottom: "16px",
@@ -824,7 +840,7 @@ const paginatedResults =
             <button
   onClick={() => addToCart(item)}
   style={{
-    background: "#138a36",
+    background: BRAND_BLUE,
     color: "white",
     border: "none",
     padding: "8px 14px",
@@ -1060,9 +1076,9 @@ opacity:
                 <button
                   onClick={() => setSelectedProduct(item)}
                   style={{
-                    border: "1px solid #138a36",
+                    border: "1px solid BRAND_BLUE",
                     background: "white",
-                    color: "#138a36",
+                    color: BRAND_BLUE,
                     padding: "8px 12px",
                     borderRadius: "8px",
                     cursor: "pointer",
@@ -1115,7 +1131,7 @@ opacity:
           >
             <h2
               style={{
-                color: "#138a36",
+                color: BRAND_BLUE,
                 marginTop: 0,
               }}
             >
@@ -1163,7 +1179,7 @@ opacity:
             <button
               onClick={() => setSelectedProduct(null)}
               style={{
-                background: "#138a36",
+                background: BRAND_BLUE,
                 color: "white",
                 border: "none",
                 padding: "10px 16px",
@@ -1182,8 +1198,13 @@ opacity:
   );
 }
 
+const BRAND_BLUE = "#0054A6";
+const BRAND_RED = "#D71920";
+const LIGHT_BLUE = "#E8F2FF";
+const CARD_GRAY = "#F7F8FA";
+
 const buttonStyle = {
-  backgroundColor: "#138a36",
+  backgroundColor:BRAND_BLUE,
   color: "white",
   border: "none",
   padding: "10px 16px",
@@ -1196,7 +1217,8 @@ const spinnerStyle = {
   width: "40px",
   height: "40px",
   border: "4px solid #d9d9d9",
-  borderTop: "4px solid #138a36",
+  borderTop: `4px solid ${BRAND_BLUE}`,
   borderRadius: "50%",
   animation: "spin 1s linear infinite",
 };
+
