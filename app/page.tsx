@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const [query, setQuery] = useState("");
@@ -19,6 +19,15 @@ export default function Home() {
   const [cartOpen, setCartOpen] = useState(false);
   const [activeTooltip, setActiveTooltip] = useState<string | null>(null);
   const [cartMessage, setCartMessage] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+
+const ITEMS_PER_PAGE = 20;
+  
+  useEffect(() => {
+    search("");
+  }, []);
+
+
   async function search(value: string) {
     setLoading(true);
 
@@ -238,6 +247,17 @@ setTimeout(() => {
         );
       })
 : [];
+
+const totalPages = Math.ceil(
+  filteredResults.length / ITEMS_PER_PAGE
+);
+
+const paginatedResults =
+  filteredResults.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
+
   return (
     <main
       style={{
@@ -617,7 +637,10 @@ setTimeout(() => {
   }}
 >
   <button
-    onClick={() => setFilter("all")}
+    onClick={() => {
+      setFilter("all");
+      setCurrentPage(1);
+    }}
     style={{
       ...buttonStyle,
       backgroundColor:
@@ -630,7 +653,10 @@ setTimeout(() => {
   </button>
 
   <button
-    onClick={() => setFilter("glp1")}
+    onClick={() => {
+      setFilter("glp1");
+      setCurrentPage(1);
+    }}
     style={{
       ...buttonStyle,
       backgroundColor:
@@ -643,9 +669,10 @@ setTimeout(() => {
   </button>
 
   <button
-    onClick={() =>
-      setProteinFilter(!proteinFilter)
-    }
+    onClick={() => {
+      setProteinFilter(!proteinFilter);
+      setCurrentPage(1);
+    }}
     style={{
       ...buttonStyle,
       backgroundColor:
@@ -658,9 +685,10 @@ setTimeout(() => {
   </button>
 
   <button
-    onClick={() =>
+    onClick={() => {
       setFiberFilter(!fiberFilter)
-    }
+      setCurrentPage(1);
+    }}
     style={{
       ...buttonStyle,
       backgroundColor:
@@ -673,11 +701,12 @@ setTimeout(() => {
   </button>
 
   <button
-  onClick={() =>
-    setGuidingStarsFilter(
-      !guidingStarsFilter
-    )
-  }
+ onClick={() => {
+  setGuidingStarsFilter(
+    !guidingStarsFilter
+  );
+  setCurrentPage(1);
+}}
   style={{
     ...buttonStyle,
     backgroundColor:
@@ -690,11 +719,12 @@ setTimeout(() => {
 </button>
 
   <button
-    onClick={() =>
+    onClick={() => {
       setBeverageFilter(
         !beverageFilter
-      )
-    }
+      );
+      setCurrentPage(1);
+    }}
     style={{
       ...buttonStyle,
       backgroundColor:
@@ -718,6 +748,47 @@ setTimeout(() => {
   Showing {filteredResults.length} products
 </p>
 
+<div
+  style={{
+    display: "flex",
+    gap: "12px",
+    alignItems: "center",
+    marginBottom: "20px",
+  }}
+>
+  <button
+    onClick={() =>
+      setCurrentPage(
+        Math.max(currentPage - 1, 1)
+      )
+    }
+    disabled={currentPage === 1}
+  >
+    Previous
+  </button>
+
+  <span>
+    Page {currentPage} of {totalPages}
+  </span>
+
+  <button
+    onClick={() =>
+      setCurrentPage(
+        Math.min(
+          currentPage + 1,
+          totalPages
+        )
+      )
+    }
+    disabled={
+      currentPage === totalPages
+    }
+  >
+    Next
+  </button>
+</div>
+
+
       {/* LOADING */}
 
       {loading && (
@@ -738,7 +809,7 @@ setTimeout(() => {
       {/* RESULTS */}
 
       {!loading &&
-        filteredResults.map((item) => (
+        paginatedResults.map((item) => (
           <div
             key={item.id}
             style={{

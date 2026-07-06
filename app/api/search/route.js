@@ -8,7 +8,7 @@ export async function GET(req) {
 
     if (!query) {
       return Response.json(
-        products.slice(0, 5000)
+        products
       );
     }
 
